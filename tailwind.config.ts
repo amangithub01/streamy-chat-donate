@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				stream: {
+					dark: '#1A1F2C',
+					accent: '#8B5CF6',
+					secondary: '#0EA5E9',
+					donation: '#D946EF'
 				}
 			},
 			borderRadius: {
@@ -84,11 +91,42 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'donation-pop': {
+					'0%': { 
+						transform: 'scale(0.8) translateY(20px)',
+						opacity: '0' 
+					},
+					'50%': { 
+						transform: 'scale(1.05) translateY(-5px)',
+						opacity: '1' 
+					},
+					'70%': { 
+						transform: 'scale(1) translateY(0px)' 
+					},
+					'100%': { 
+						transform: 'scale(1) translateY(0px)' 
+					}
+				},
+				'pulse-ring': {
+					'0%': {
+						transform: 'scale(0.8)',
+						opacity: '0'
+					},
+					'50%': {
+						opacity: '0.5'
+					},
+					'100%': {
+						transform: 'scale(1.5)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'donation-pop': 'donation-pop 0.6s ease-out forwards',
+				'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite'
 			}
 		}
 	},

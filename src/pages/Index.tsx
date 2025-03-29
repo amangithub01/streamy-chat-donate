@@ -1,13 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import StreamPlayer from '@/components/StreamPlayer';
+import ChatBox from '@/components/ChatBox';
+import DonationForm from '@/components/DonationForm';
+import DonationAlert from '@/components/DonationAlert';
+import AuthModal from '@/components/AuthModal';
+import { AuthProvider } from '@/context/AuthContext';
+import { ChatProvider } from '@/context/ChatContext';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <AuthProvider>
+      <ChatProvider>
+        <div className="min-h-screen flex flex-col bg-stream-dark">
+          <Navbar />
+          
+          <main className="flex-1 container mx-auto py-6 px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2 space-y-6">
+                <StreamPlayer />
+                <DonationForm />
+              </div>
+              
+              <div className="h-[600px] lg:h-auto">
+                <ChatBox />
+              </div>
+            </div>
+          </main>
+          
+          <DonationAlert />
+          <AuthModal />
+        </div>
+      </ChatProvider>
+    </AuthProvider>
   );
 };
 
