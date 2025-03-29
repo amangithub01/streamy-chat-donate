@@ -1,38 +1,77 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
-import StreamPlayer from '@/components/StreamPlayer';
-import ChatBox from '@/components/ChatBox';
-import DonationForm from '@/components/DonationForm';
-import DonationAlert from '@/components/DonationAlert';
-import AuthModal from '@/components/AuthModal';
 import { AuthProvider } from '@/context/AuthContext';
-import { ChatProvider } from '@/context/ChatContext';
+import { books, subjects, conditions } from '@/data/books';
+import FilterSidebar from '@/components/FilterSidebar';
+import BookList from '@/components/BookList';
+import { useToast } from "@/components/ui/use-toast";
+import { Book } from '@/types/book';
 
 const Index = () => {
+  const { toast } = useToast();
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
+  const [cart, setCart] = useState<string[]>([]);
+  
+  const filteredBooks = books.filter((book) => {
+    // Filter by price range
+    if (book.price < priceRange[0] || book.price > priceRange[1]) {
+      return false;
+    }
+    
+    // Filter by subjects
+    if (selectedSubjects.length > 0 && !selectedSubjects.includes(book.subject)) {
+      return false;
+    }
+    
+    // Filter by condition
+    if (selectedConditions.length > 0 && !selectedConditions.includes(book.condition)) {
+      return false;
+    }
+    
+    return true;
+  });
+  
+  const handleAddToCart = (id: string) => {
+    setCart([...cart, id]);
+    const book = books.find((book) => book.id === id) as Book;
+    toast({
+      title: "Added to cart",
+      description: `${book.title} has been added to your cart.`,
+    });
+  };
+  
   return (
     <AuthProvider>
-      <ChatProvider>
-        <div className="min-h-screen flex flex-col bg-black">
-          <Navbar />
-          
-          <main className="flex-1 container mx-auto py-6 px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 space-y-6">
-                <StreamPlayer />
-                <DonationForm />
-              </div>
-              
-              <div className="h-[600px] lg:h-auto">
-                <ChatBox />
-              </div>
+      <div className="min-h-screen flex flex-col bg-black">
+        <Navbar />
+        
+        <main className="flex-1 container mx-auto py-6 px-4">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="w-full md:w-64">
+              <FilterSidebar
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                subjects={subjects}
+                selectedSubjects={selectedSubjects}
+                setSelectedSubjects={setSelectedSubjects}
+                conditions={conditions}
+                selectedConditions={selectedConditions}
+                setSelectedConditions={setSelectedConditions}
+              />
             </div>
-          </main>
-          
-          <DonationAlert />
-          <AuthModal />
-        </div>
-      </ChatProvider>
+            
+            <div className="flex-1">
+              <BookList 
+                books={filteredBooks} 
+                onAddToCart={handleAddToCart}
+              />
+            </div>
+          </div>
+        </main>
+      </div>
     </AuthProvider>
   );
 };
