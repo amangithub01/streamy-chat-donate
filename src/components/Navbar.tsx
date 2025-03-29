@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, openAuthModal } = useAuth();
 
   return (
-    <nav className="bg-stream-dark border-b border-muted px-4 py-3">
+    <nav className="bg-black border-b border-[#222222] px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Video className="h-6 w-6 text-stream-accent" />

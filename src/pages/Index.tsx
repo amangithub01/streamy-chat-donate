@@ -13,7 +13,7 @@ const Index = () => {
   return (
     <AuthProvider>
       <ChatProvider>
-        <div className="min-h-screen flex flex-col bg-stream-dark">
+        <div className="min-h-screen flex flex-col bg-black">
           <Navbar />
           
           <main className="flex-1 container mx-auto py-6 px-4">
