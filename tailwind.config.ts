@@ -64,7 +64,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				stream: {
-					dark: '#1A1F2C',
+					dark: '#1E293B', // Changed from #1A1F2C to a blue-gray color
 					accent: '#8B5CF6',
 					secondary: '#0EA5E9',
 					donation: '#D946EF'
