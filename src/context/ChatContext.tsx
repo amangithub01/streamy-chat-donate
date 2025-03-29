@@ -59,9 +59,9 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     const botMessages = [
       'This stream is awesome!',
       'Anyone else excited for the new game coming out next week?',
-      'I've been following for months, never disappoints!',
-      'How's everyone doing today?',
-      'What's your favorite game right now?'
+      'I\'ve been following for months, never disappoints!',
+      'How\'s everyone doing today?',
+      'What\'s your favorite game right now?'
     ];
     
     const botUsers = ['ViewerPro', 'GameEnthusiast', 'StreamFan', 'CasualGamer', 'LongTimeViewer'];
