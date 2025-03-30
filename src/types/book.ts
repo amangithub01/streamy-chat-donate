@@ -8,14 +8,11 @@ export interface Book {
   condition: 'New' | 'Like New' | 'Very Good' | 'Good' | 'Acceptable';
   coverImage: string;
   subject: string;
-  description: string;
-  seller: {
-    id: string;
-    name: string;
-    rating: number;
-  };
-  isbn: string;
-  publicationYear: number;
-  university?: string;
-  course?: string;
+  description?: string;
+  isbn?: string;
+  publisher?: string;
+  publicationYear?: number;
+  edition?: string;
+  pageCount?: number;
+  language?: string;
 }

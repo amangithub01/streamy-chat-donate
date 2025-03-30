@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
+import { Link } from 'react-router-dom';
 import { 
   Book, 
   Search, 
@@ -9,7 +10,8 @@ import {
   LogIn, 
   User, 
   Menu, 
-  X 
+  X,
+  Video
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
@@ -21,11 +23,20 @@ const Navbar = () => {
   return (
     <nav className="bg-black border-b border-[#222222] px-4 py-3 sticky top-0 z-40">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Book className="h-6 w-6 text-stream-accent" />
-          <span className="text-xl font-bold bg-gradient-to-r from-stream-accent to-stream-secondary bg-clip-text text-transparent">
-            BookTrade Academia
-          </span>
+        <div className="flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <Book className="h-6 w-6 text-stream-accent" />
+            <span className="text-xl font-bold bg-gradient-to-r from-stream-accent to-stream-secondary bg-clip-text text-transparent">
+              BookTrade
+            </span>
+          </Link>
+          
+          <div className="hidden md:flex space-x-4">
+            <Link to="/stream" className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors">
+              <Video size={18} />
+              <span>Live Stream</span>
+            </Link>
+          </div>
         </div>
         
         <div className={`hidden md:flex items-center space-x-6 flex-1 max-w-md mx-6 transition-all duration-200 ${searchFocused ? 'scale-105' : ''}`}>
@@ -91,6 +102,12 @@ const Navbar = () => {
               />
             </div>
             <div className="flex flex-col space-y-2">
+              <Link to="/stream">
+                <Button variant="ghost" size="sm" className="w-full justify-start gap-2">
+                  <Video size={18} />
+                  Live Stream
+                </Button>
+              </Link>
               <Button variant="ghost" size="sm" className="justify-start">
                 Browse Subjects
               </Button>
