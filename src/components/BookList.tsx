@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import BookCard from './BookCard';
 import { Book } from '@/types/book';
-import { Grid2X2, List, SlidersHorizontal, X } from 'lucide-react';
+import { Grid2X2, List, SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
   Pagination, 
@@ -31,7 +30,17 @@ const BookList = ({ books, onAddToCart }: BookListProps) => {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
         <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
-          <BookCard className="h-8 w-8 text-muted-foreground" />
+          <BookCard
+            id=""
+            title=""
+            author=""
+            price={0}
+            originalPrice={0}
+            condition="New"
+            coverImage=""
+            subject=""
+            onAddToCart={() => {}}
+          />
         </div>
         <h3 className="text-lg font-medium mb-2">No books match your search criteria</h3>
         <p className="text-muted-foreground mb-6 max-w-md">
@@ -50,8 +59,7 @@ const BookList = ({ books, onAddToCart }: BookListProps) => {
     { label: 'Condition', value: 'condition' }
   ];
   
-  // Mocked pagination logic (in a real app, you'd have actual pagination)
-  const totalPages = Math.ceil(books.length / 9); // Assuming 9 books per page
+  const totalPages = Math.ceil(books.length / 9);
   const currentPage = 1;
   
   return (
@@ -62,7 +70,6 @@ const BookList = ({ books, onAddToCart }: BookListProps) => {
             Showing <span className="font-medium text-foreground">{books.length}</span> results
           </p>
           
-          {/* Mobile Filter Button */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="md:hidden flex items-center gap-1">
@@ -72,8 +79,6 @@ const BookList = ({ books, onAddToCart }: BookListProps) => {
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] sm:w-[350px]">
               <div className="h-full pt-6">
-                {/* Filter content for mobile */}
-                {/* This would contain the same filters as the sidebar */}
                 <p className="text-lg font-semibold mb-4">Filters</p>
               </div>
             </SheetContent>

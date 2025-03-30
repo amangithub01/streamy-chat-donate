@@ -6,7 +6,7 @@ import { books, subjects, conditions } from '@/data/books';
 import FilterSidebar from '@/components/FilterSidebar';
 import BookList from '@/components/BookList';
 import { useToast } from "@/hooks/use-toast";
-import { Book } from '@/types/book';
+import type { Book } from '@/types/book';
 import { BookOpen, DollarSign, BookMarked } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 

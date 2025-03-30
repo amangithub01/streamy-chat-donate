@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,7 @@ interface BookCardProps {
   coverImage: string;
   subject: string;
   onAddToCart: (id: string) => void;
+  className?: string;
 }
 
 const getConditionColor = (condition: string) => {
@@ -43,12 +43,13 @@ const BookCard = ({
   condition,
   coverImage,
   subject,
-  onAddToCart
+  onAddToCart,
+  className
 }: BookCardProps) => {
   const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
   
   return (
-    <Card className="overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg border-muted h-full flex flex-col group">
+    <Card className={`overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg border-muted h-full flex flex-col group ${className || ''}`}>
       <div className="relative pb-[140%] bg-muted overflow-hidden">
         <img
           src={coverImage}
